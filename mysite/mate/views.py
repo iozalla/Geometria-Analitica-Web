@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.db import models
 
-# Create your views here.
+# Create your models here.
+
+
+def index(request):
+    return HttpResponse("Aqui tiene que ir la pagina principal.")

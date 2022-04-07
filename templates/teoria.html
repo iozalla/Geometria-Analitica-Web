@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>GeoAnal</title>
+</head>
+
+<body>
+    {% extends "base.html" %}
+    {% block nav %}
+    {{ super() }}
+    <div class="bg-image" style="
+      background-image: url('/static/img/203483-math-equation-wallpaper.jpg');
+      height: 100vh;   background-repeat: no-repeat;
+  background-attachment: fixed;">
+
+
+
+
+        <div class="container py-4">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <h1>Geometria analitica</h1>
+                <h2>La recta de Euler</h2>
+                Para entender la recta de Euler primero tenemos que saber lo que es el ortocentro, el baricentro y el
+                cincuncentro. <br>
+                <h6>Ortocentro:</h6> Punto de corte de las 3 alturas del triangulo.<br>
+                <img src="/static/img/ort.gif" alt="Ortocentro"><br><br>
+                <h6>Baricentro:</h6> Punto de corte de las 3 medianas<br>
+                <img src="/static/img/bar.gif" alt="Baricentro"><br><br>
+                <h6>Circuncentro:</h6> punto de corte de las tres mediatrices. Centro de una circunferencia circunscrita
+                al triangulo.<br>
+                <img src="/static/img/circ.gif" alt="Circuncentro"><br><br>
+            </div>
+        </div>
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

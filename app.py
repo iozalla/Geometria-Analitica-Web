@@ -7,6 +7,7 @@ from json import dumps, load, loads
 
 from flask import Flask, render_template, Response
 
+import database
 def sample_function():
     """This is a sample docstring subject
 
@@ -38,6 +39,13 @@ def index():
 def teoria():
     """Return the teoria.html page"""
     return render_template('teoria.html')
+
+
+@app.route('/ejercicios/')
+def ejercicios():
+    """Return the ejercicios.html page"""
+    tests = database.get_tests()
+    return render_template('ejercicios.html', tests=tests)
 
 
 if __name__ == '__main__':

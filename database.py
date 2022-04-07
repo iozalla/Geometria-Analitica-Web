@@ -23,5 +23,5 @@ def get_tests():
 
     _conn.close()
 
-    print(result)
+    return result
 

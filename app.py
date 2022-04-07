@@ -1,3 +1,4 @@
+from crypt import methods
 import requests
 import re
 
@@ -33,7 +34,10 @@ def index():
     return render_template('index.html')
 
 
-
+@app.route('/teoria/', methods=['GET'])
+def teoria():
+    """Return the teoria.html page"""
+    return render_template('teoria.html')
 
 
 if __name__ == '__main__':

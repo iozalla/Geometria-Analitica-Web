@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    {% block nav %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Index</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('teoria') }}">Teoria</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Ejercicios</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled">Dudas</a>
+        </li>
+    </ul>
+    {% endblock %}
+</head>
+
+</html>

@@ -1,3 +1,4 @@
+from cgi import test
 from crypt import methods
 import requests
 import re
@@ -5,9 +6,11 @@ import re
 from datetime import datetime, timedelta
 from json import dumps, load, loads
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 
 import database
+
+
 def sample_function():
     """This is a sample docstring subject
 
@@ -41,11 +44,21 @@ def teoria():
     return render_template('teoria.html')
 
 
-@app.route('/ejercicios/')
+@app.route('/ejercicios/', methods=['GET'])
 def ejercicios():
     """Return the ejercicios.html page"""
     tests = database.get_tests()
     return render_template('ejercicios.html', tests=tests)
+
+
+@app.route('/correccion_ejercicios/', methods=['POST'])
+def correccion():
+    tests = database.get_tests()
+    correccion = []
+    for id, question, a, b, c, d, answer in tests:
+        respondido = request.form[str(id)]
+        correccion.append((id, question, [a, b, c, d], answer, respondido))
+    return render_template('correccion_ejercicios.html', correciones=correccion)
 
 
 if __name__ == '__main__':

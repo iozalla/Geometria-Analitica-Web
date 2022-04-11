@@ -24,14 +24,18 @@
 
         <div class="container py-4">
             <div class="p-5 mb-4 bg-light rounded-3">
-                <h1>Test</h1>
+                <h1>Inicio de Sesión</h1>
                 <br>
-                <form class="row g-3 needs-validation" action="/correccion_ejercicios/" method='post'>
+                <form class="row g-3 needs-validation" action="{{ url_for('login') }}" method='post'>
                     <input type="text" class="form-control" placeholder="Email" aria-label="email"
                         aria-describedby="basic-addon1">
                     <input type="text" class="form-control" placeholder="Contraseña" aria-label="password"
                         aria-describedby="basic-addon1">
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        <button type="submit" class="btn btn-outline-primary">Iniciar Sesión</button>
+                </form>
+                <br>
+                <form class="row g-3 needs-validation" action="{{ url_for('signup') }}" method='get'>
+                    <button type="submit" class="btn btn-outline-success">Registrarse</form>
                 </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import sqlite3
 
 exercises_db_file_location = "database/exercises.db"
+users_db_file_location = "database/users.db"
 
 def get_questions():
     _conn = sqlite3.connect(exercises_db_file_location)
@@ -25,3 +26,11 @@ def get_tests():
 
     return result
 
+def register_user(email, name, last_name, password):
+    _conn = sqlite3.connect(users_db_file_location)
+    _c = _conn.cursor()
+    print("INSERT INTO users(email, first_name, last_name, password) VALUES('{}','{}','{}','{}')".format(email, name, last_name, password))
+
+    _c.execute("INSERT INTO users(email, first_name, last_name, password) VALUES('{}','{}','{}','{}')".format(email, name, last_name, password))
+    _conn.commit()
+    _conn.close()

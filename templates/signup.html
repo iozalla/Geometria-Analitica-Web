@@ -26,18 +26,16 @@
             <div class="p-5 mb-4 bg-light rounded-3">
                 <h1>Test</h1>
                 <br>
-                <form class="row g-3 needs-validation" action="/correccion_ejercicios/" method='post'>
-                    <input type="text" class="form-control" placeholder="Email" aria-label="email"
+                <form class="row g-3 needs-validation" action="{{ url_for('signup') }}" method='post'>
+                    <input type="text" name = 'email' class="form-control" placeholder="Email" aria-label="email"
                         aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre"
+                    <input type="text" name = 'name' class="form-control" placeholder="Nombre" aria-label="nombre"
                         aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="Apellido" aria-label="apellido"
+                    <input type="text" name = 'last_name' class="form-control" placeholder="Apellido" aria-label="apellido"
                         aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="Contraseña" aria-label="password"
+                    <input type="password" name = 'password'class="form-control" placeholder="Contraseña" aria-label="password"
                         aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="Confirmar contraseña"
-                        aria-label="password_check" aria-describedby="basic-addon1">
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <button type="submit" class="btn btn-outline-success">Registrarse</button>
                 </form>
             </div>
         </div>

@@ -1,13 +1,17 @@
 from cgi import test
+<<<<<<< HEAD
 from crypt import methods
 import flask
+=======
+# from crypt import methods
+>>>>>>> 53653b4b399811bbc4e29ab6bda72475c3c474c8
 import requests
 import re
 
 from datetime import datetime, timedelta
 from json import dumps, load, loads
 
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, redirect,url_for
 
 import database
 
@@ -57,8 +61,13 @@ def correccion():
     tests = database.get_tests()
     correccion = []
     for id, question, a, b, c, d, answer in tests:
-        respondido = request.form[str(id)]
-        correccion.append((id, question, [a, b, c, d], answer, respondido))
+        try:
+            respondido = request.form[str(id)]
+            correccion.append((id, question, [a, b, c, d], answer, respondido))
+        except:
+            print("el usuario no ha respondido a todas las prerguntas")
+            #return redirect(url_for('correccion'))
+            
     return render_template('correccion_ejercicios.html', correciones=correccion)
 
 @app.route('/login/', methods=['GET','POST'])

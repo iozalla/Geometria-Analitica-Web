@@ -1,10 +1,5 @@
 from cgi import test
-<<<<<<< HEAD
-from crypt import methods
 import flask
-=======
-# from crypt import methods
->>>>>>> 53653b4b399811bbc4e29ab6bda72475c3c474c8
 import requests
 import re
 

@@ -1,5 +1,6 @@
 from cgi import test
 from crypt import methods
+import flask
 import requests
 import re
 
@@ -60,6 +61,17 @@ def correccion():
         correccion.append((id, question, [a, b, c, d], answer, respondido))
     return render_template('correccion_ejercicios.html', correciones=correccion)
 
+@app.route('/login/', methods=['GET','POST'])
+def login():
+    if flask.request.method == 'GET':
+        return render_template('login.html')
 
+@app.route('/signup/', methods=['GET','POST'])
+def signup():
+    if flask.request.method == 'GET':
+        return render_template('signup.html')
+
+
+        
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10001, debug=True)

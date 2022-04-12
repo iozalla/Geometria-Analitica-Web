@@ -70,8 +70,12 @@ def correccion():
 
 @app.route('/login/', methods=['GET','POST'])
 def login():
-    if flask.request.method == 'POST' and request.form['password'] == database.get_password(request.form['email']):
+    if flask.request.method == 'POST' and request.form['password'] == (user_data := database.get_user_data(request.form['email']))[2]:
         session['email'] = request.form['email']
+        session['nombre'] = user_data[0]
+        session['apellido'] = user_data[1]
+        print(session['nombre'])
+        print(session['apellido'])
         return render_template('index.html')
     else:
         return render_template('login.html')
@@ -89,8 +93,13 @@ def signup():
 @app.route('/close_session/',methods=['GET'])
 def close_session():
     session['email'] = None
+    session['nombre'] = None
+    session['apellido'] = None
     flash('Sesión cerrada.')
     return render_template('index.html')
+
+def flush_warnings():
+    session['_flashes'].clear()
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10001, debug=True)

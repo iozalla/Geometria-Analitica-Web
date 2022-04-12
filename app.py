@@ -68,6 +68,11 @@ def correccion():
             
     return render_template('correccion_ejercicios.html', correciones=correccion)
 
+@app.route('/foro/', methods=['GET','POST'])
+def foro():
+    tests = database.get_hilo()
+    return render_template('foro.html', tests=tests)
+    
 @app.route('/login/', methods=['GET','POST'])
 def login():
     if flask.request.method == 'POST' and request.form['password'] == (user_data := database.get_user_data(request.form['email']))[2]:

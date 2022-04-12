@@ -1,4 +1,5 @@
 from cgi import test
+from django.shortcuts import render
 import flask
 import requests
 import re
@@ -6,9 +7,10 @@ import re
 from datetime import datetime, timedelta
 from json import dumps, load, loads
 
-from flask import Flask, render_template, Response, request, redirect,url_for
+from flask import Flask, session, render_template, request, flash
 
 import database
+
 
 
 def sample_function():
@@ -30,6 +32,7 @@ def sample_function():
 
 
 app = Flask(__name__)
+app.secret_key = '*nW6Ze{|=p-Whj3FA%V+0xGwC~\OXY^6B=979NO2'
 
 
 @app.route('/', methods=['GET'])
@@ -67,7 +70,10 @@ def correccion():
 
 @app.route('/login/', methods=['GET','POST'])
 def login():
-    if flask.request.method == 'GET':
+    if flask.request.method == 'POST' and request.form['password'] == database.get_password(request.form['email']):
+        session['email'] = request.form['email']
+        return render_template('index.html')
+    else:
         return render_template('login.html')
 
 @app.route('/signup/', methods=['GET','POST'])
@@ -75,10 +81,16 @@ def signup():
     if flask.request.method == 'GET':
         return render_template('signup.html')
     else:
-        print('hola')
         database.register_user(request.form['email'],request.form['name'],request.form['last_name'],request.form['password'])
+        session['email'] = request.form['email']
+        return render_template('index.html')
 
 
+@app.route('/close_session/',methods=['GET'])
+def close_session():
+    session['email'] = None
+    flash('Sesión cerrada.')
+    return render_template('index.html')
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10001, debug=True)

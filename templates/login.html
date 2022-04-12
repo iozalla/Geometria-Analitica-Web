@@ -27,9 +27,9 @@
                 <h1>Inicio de Sesión</h1>
                 <br>
                 <form class="row g-3 needs-validation" action="{{ url_for('login') }}" method='post'>
-                    <input type="text" class="form-control" placeholder="Email" aria-label="email"
+                    <input type="text" name="email" class="form-control" placeholder="Email" aria-label="email"
                         aria-describedby="basic-addon1">
-                    <input type="text" class="form-control" placeholder="Contraseña" aria-label="password"
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña" aria-label="password"
                         aria-describedby="basic-addon1">
                         <button type="submit" class="btn btn-outline-primary">Iniciar Sesión</button>
                 </form>

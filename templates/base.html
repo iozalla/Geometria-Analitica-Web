@@ -15,9 +15,15 @@
         <li class="nav-item ">
             <a class="nav-link disabled">Dudas</a>
         </li>
+        {% if session.get("email", None) == None %}
         <li class="nav-item ms-auto">
             <a class="nav-link ms" href="{{ url_for('login') }}">Iniciar Sesión</a>
         </li>
+        {% else %}
+        <li class="nav-item ms-auto">
+            <a class="nav-link ms" href="{{ url_for('close_session') }}">Cerrar Sesión</a>
+        </li>
+        {% endif %}
     </ul>
     {% endblock %}
 </head>

@@ -92,6 +92,8 @@ def signup():
     else:
         database.register_user(request.form['email'],request.form['name'],request.form['last_name'],request.form['password'])
         session['email'] = request.form['email']
+        session['nombre'] = request.form['name']
+        session['apellido'] = request.form['last_name']
         return render_template('index.html')
 
 

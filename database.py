@@ -1,5 +1,5 @@
 import sqlite3
-from MySQLdb import DATETIME
+
 
 from numpy import insert
 from requests import post

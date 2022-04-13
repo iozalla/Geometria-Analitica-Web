@@ -27,14 +27,15 @@
                 <h1>Test</h1>
                 <br>
                 <form class="row g-3 needs-validation" action="{{ url_for('signup') }}" method='post'>
-                    <input type="text" name='email' class="form-control" placeholder="Email" aria-label="email"
-                        aria-describedby="basic-addon1">
-                    <input type="text" name='name' class="form-control" placeholder="Nombre" aria-label="nombre"
-                        aria-describedby="basic-addon1">
-                    <input type="text" name='last_name' class="form-control" placeholder="Apellido"
-                        aria-label="apellido" aria-describedby="basic-addon1">
-                    <input type="password" name='password' class="form-control" placeholder="Contraseña"
-                        aria-label="password" aria-describedby="basic-addon1">
+                    <input type="text" name="email" class="form-control" placeholder="Email" aria-label="email"
+                        aria-describedby="basic-addon1" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        title="Introduzca un Email valido">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre" required pattern=".{1,20}"
+                        title="Introduzca su nombre.">
+                        <input type="text" name="last_name" class="form-control" placeholder="Apellidos" required pattern=".{1,20}"
+                        title="Introduzca sus apellidos.">
+                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required pattern=".{6,}"
+                        title="La contraseña debe de contener un minimo de 6 caracteres.">
                     <div class="form-check form-check-inline">
                         <input type="radio" class="btn-check" name="rol" id="option1" autocomplete="off" checked
                             value="alumno">

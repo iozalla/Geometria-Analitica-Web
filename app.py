@@ -123,11 +123,7 @@ def signup():
     if flask.request.method == 'GET':
         return render_template('signup.html')
     else:
-<<<<<<< HEAD
         database.register_user(request.form['email'],request.form['name'].title(),request.form['last_name'].title(),request.form['password'], request.form['rol'])
-=======
-        database.register_user(request.form['email'],request.form['name'],request.form['last_name'],request.form['password'])
->>>>>>> 18ed645bd8b4ff7ae3ad8e9053f890eaa0506bfb
         session['email'] = request.form['email']
         session['nombre'] = request.form['name'].title()
         session['apellido'] = request.form['last_name'].title()

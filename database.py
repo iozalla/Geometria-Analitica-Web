@@ -95,3 +95,6 @@ def get_user_data(user_email):
 #                             postId INTEGER PRIMARY KEY AUTOINCREMENT,
 #                             hilo integer not null
 # );
+
+# insert into post(usuario,mensaje,fechaHora,hilo) VALUES("Iñigo","El ligonleyen es el mejor juego?",DATETIME(),2);
+# insert into post(usuario,mensaje,fechaHora,hilo) VALUES("Riot Games","Si, evidentemente. Su contenido es sublime, ofrece interminables horas de diversion y una amplia variedad de modos de juego.",DATETIME(),2);

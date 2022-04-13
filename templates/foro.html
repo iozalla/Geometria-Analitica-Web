@@ -29,13 +29,16 @@
                 <form class="row g-3 needs-validation" action="/correccion_ejercicios/" method='post'>
                     {% if tests!=0 %}
                     {% for usuario,mensaje,fechaHora,postId,hilo in tests %}
+                    <div class="p-4 mb-3 bg-secondary rounded-3">
+
                     <div class="col-md-6">
                         <h5>{{ mensaje }}</h5>
                         <h6>{{ usuario }}</h6>
                     </div>
 
-
+                    </div>
                     <br>
+                    
                     {% endfor %}
                     {% endif %}
                     <div class="col-12">

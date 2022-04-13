@@ -87,14 +87,20 @@ def foro():
             return render_template('foroMain.html', tests=tests)
     else:
         return redirect(url_for("login"), code=302)
-@app.route('/crearHilo/', methods=['GET'])
+@app.route('/crearHilo/', methods=['GET','POST'])
 def crearHilo():
     try:
         session['email']
     except:
         return redirect(url_for("login"), code=302)
     if not(session['email'] is None):
-        return render_template('crearHilo.html')
+        if flask.request.method == 'POST':
+            
+            text=request.form['text']
+            database.crear_post(text,session['email'])
+            return render_template('crearHilo.html')
+        else:
+            return render_template('crearHilo.html')
     else:
         return redirect(url_for("login"), code=302)
     

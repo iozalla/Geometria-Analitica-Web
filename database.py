@@ -1,4 +1,5 @@
 import sqlite3
+from traceback import print_tb
 
 
 from numpy import insert
@@ -38,6 +39,18 @@ def register_user(email, name, last_name, password, rol):
     _c.execute("INSERT INTO users(email, first_name, last_name, password, rol) VALUES('{}','{}','{}','{}','{}')".format(email, name, last_name, password, rol))
     _conn.commit()
     _conn.close()
+
+def crear_post(text, name):
+    _conn = sqlite3.connect(foro_db_file_location)
+    _c = _conn.cursor()
+    _c.execute("select hilo from post GROUP BY hilo ORDER BY fechaHora DESC LIMIT 1;")
+    result = [x for x in _c.fetchall()]
+    id= result[0][0]+1
+    print(result[0][0]+1)
+    _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,id))
+    _conn.commit()
+    _conn.close()
+
 
 def get_hilo(idHilo):
     

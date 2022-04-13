@@ -1,3 +1,4 @@
+from ast import Try
 from cgi import test
 from django.shortcuts import render
 import flask
@@ -70,7 +71,10 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
-    print(session['email'])
+    try:
+        session['email']
+    except:
+        return redirect(url_for("login"), code=302)
     if not(session['email'] is None):
         id=request.args.get('id')
         if not(id is None):
@@ -85,6 +89,10 @@ def foro():
         return redirect(url_for("login"), code=302)
 @app.route('/crearHilo/', methods=['GET'])
 def crearHilo():
+    try:
+        session['email']
+    except:
+        return redirect(url_for("login"), code=302)
     if not(session['email'] is None):
         return render_template('crearHilo.html')
     else:

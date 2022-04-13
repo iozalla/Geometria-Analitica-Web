@@ -70,8 +70,16 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
-    tests = database.get_hilo()
-    return render_template('foro.html', tests=tests)
+    id=request.args.get('id')
+    if not(id is None):
+        id=request.args.get('id')
+        tests = database.get_hilo(id)
+        return render_template('foro.html', tests=tests)
+    else:
+        tests = database.get_hilos()
+        print(tests)
+        return render_template('foroMain.html', tests=tests)
+
     
 @app.route('/login/', methods=['GET','POST'])
 def login():

@@ -12,8 +12,8 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ url_for('ejercicios') }}">Ejercicios</a>
         </li>
-        <li class="nav-item ">
-            <a class="nav-link disabled">Dudas</a>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('foro') }}">Dudas</a>
         </li>
         {% if session.get("email", None) == None %}
         <li class="nav-item ms-auto">

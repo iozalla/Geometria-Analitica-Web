@@ -40,13 +40,33 @@ def register_user(email, name, last_name, password):
     _conn.commit()
     _conn.close()
 
-def get_hilo():
-    _conn = sqlite3.connect(foro_db_file_location)
-    _c = _conn.cursor()
-
-    _c.execute("SELECT * FROM post;")
+def get_hilo(idHilo):
+    
+    try:
+        int(idHilo)
+        _conn = sqlite3.connect(foro_db_file_location)
+        _c = _conn.cursor()
+        _c.execute("SELECT * FROM post where hilo ="+str(idHilo)+";")
+    except Exception as e:
+        print("illegal char s      :"+str(e))
+        return 0
     result = [x for x in _c.fetchall()]
 
+    _conn.close()
+
+    return result
+
+def get_hilos():
+    
+
+    _conn = sqlite3.connect(foro_db_file_location)
+    _c = _conn.cursor()
+    _c.execute("select * from post GROUP BY hilo ORDER BY fechaHora;")
+
+
+
+    result = [x for x in _c.fetchall()]
+    print(result)
     _conn.close()
 
     return result

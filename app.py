@@ -1,6 +1,3 @@
-from ast import Try
-from cgi import test
-from django.shortcuts import render
 import flask
 import requests
 import re
@@ -8,8 +5,7 @@ import re
 from datetime import datetime, timedelta
 from json import dumps, load, loads
 
-from flask import Flask, redirect, session, render_template, request, flash, url_for
-
+from flask import Flask, redirect, session, render_template, request, flash, url_for,make_response
 import database
 
 
@@ -35,6 +31,25 @@ def sample_function():
 app = Flask(__name__)
 app.secret_key = '*nW6Ze{|=p-Whj3FA%V+0xGwC~\OXY^6B=979NO2'
 
+
+@app.route('/pdf')
+def pdfviewer():
+    number=int(request.args.get('id'))
+    print(number)
+    if number ==1:
+        return redirect("/static/docs/1_Iniciación.pdf")
+    elif number==2:
+        return redirect("/static/docs/2_Vectores.pdf")
+    elif number==3:
+        return redirect("/static/docs/3_OperacionesV.pdf")
+    elif number==4:
+        return redirect("/static/docs/4_EcuacionesR.pdf")
+    elif number==5:
+        return redirect("/static/docs/5_ProblemasI.pdf")
+    elif number==6:
+        return redirect("/static/docs/Todos.pdf")
+    else:
+        return 
 
 @app.route('/', methods=['GET'])
 def index():
@@ -71,10 +86,7 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
-    try:
-        session['email']
-    except:
-        return redirect(url_for("login"), code=302)
+    print(session['email'])
     if not(session['email'] is None):
         id=request.args.get('id')
         if not(id is None):
@@ -89,10 +101,6 @@ def foro():
         return redirect(url_for("login"), code=302)
 @app.route('/crearHilo/', methods=['GET'])
 def crearHilo():
-    try:
-        session['email']
-    except:
-        return redirect(url_for("login"), code=302)
     if not(session['email'] is None):
         return render_template('crearHilo.html')
     else:
@@ -115,7 +123,11 @@ def signup():
     if flask.request.method == 'GET':
         return render_template('signup.html')
     else:
+<<<<<<< HEAD
         database.register_user(request.form['email'],request.form['name'].title(),request.form['last_name'].title(),request.form['password'], request.form['rol'])
+=======
+        database.register_user(request.form['email'],request.form['name'],request.form['last_name'],request.form['password'])
+>>>>>>> 18ed645bd8b4ff7ae3ad8e9053f890eaa0506bfb
         session['email'] = request.form['email']
         session['nombre'] = request.form['name'].title()
         session['apellido'] = request.form['last_name'].title()

@@ -27,6 +27,7 @@
                 <h1>Test</h1>
                 <br>
                 <form class="row g-3 needs-validation" action="{{ url_for('signup') }}" method='post'>
+<<<<<<< HEAD
                     <input type="text" name="email" class="form-control" placeholder="Email" aria-label="email"
                         aria-describedby="basic-addon1" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         title="Introduzca un Email valido">
@@ -44,6 +45,16 @@
                             value="profesor">
                         <label class="btn btn-danger" for="option2">Profesor</label>
                     </div>
+=======
+                    <input type="text" name = 'email' class="form-control" placeholder="Email" aria-label="email"
+                        aria-describedby="basic-addon1">
+                    <input type="text" name = 'name' class="form-control" placeholder="Nombre" aria-label="nombre"
+                        aria-describedby="basic-addon1">
+                    <input type="text" name = 'last_name' class="form-control" placeholder="Apellido" aria-label="apellido"
+                        aria-describedby="basic-addon1">
+                    <input type="password" name = 'password'class="form-control" placeholder="Contraseña" aria-label="password"
+                        aria-describedby="basic-addon1">
+>>>>>>> 18ed645bd8b4ff7ae3ad8e9053f890eaa0506bfb
                     <button type="submit" class="btn btn-outline-success">Registrarse</button>
                 </form>
             </div>

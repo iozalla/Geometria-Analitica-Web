@@ -25,39 +25,41 @@
 
         <div class="container py-4">
             <div class="p-5 mb-4 bg-light rounded-3">
+                <div style="clear: both">
+                    <h1>Foro</h1>
+                    <a href="{{ url_for('crearHilo') }}">
+                        <button type="button" class="btn btn-primary ms-auto">Nuevo Hilo</button>
+                    </a>
+                    <br>
+                </div>
+                <hr>
+                <br>    
+                <div>
 
-                <h1>Foro</h1>
-                <br>
-                <form class="row g-3 needs-validation" action="/correccion_ejercicios/" method='post'>
 
                     {% if tests!=0 %}
                     {% for usuario,mensaje,fechaHora,postId,hilo in tests %}
                     <div class="p-5 mb-4 bg-secondary rounded-3">
-                    <div class="col-md-6">
-                        <a class="nav-link" href="{{ url_for('foro') }}?id={{hilo}}">
-                            <h5>{{ mensaje }}</h5>
-                        </a>
-                        <h6>{{ usuario }} {{hilo}}</h6>
+                        <div class="col-md-6">
+                            <a class="nav-link" href="{{ url_for('foro') }}?id={{hilo}}">
+                                <h5>{{ mensaje }}</h5>
+                            </a>
+                            <h6>{{ usuario }} {{hilo}}</h6>
+                        </div>
                     </div>
-            </div>
+                    <hr>
+                    <br>
+                    {% endfor %}
+                    {% endif %}
 
-            <br>
-            {% endfor %}
-            {% endif %}
-            <div class="col-12">
-                <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Corregir</button>
                 </div>
-                </form>
-            </div>
-        </div>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                    crossorigin="anonymous"></script>
 
-        {% endblock %}
+                {% endblock %}
 </body>
 
 </html>

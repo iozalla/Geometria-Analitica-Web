@@ -7,7 +7,7 @@ import re
 from datetime import datetime, timedelta
 from json import dumps, load, loads
 
-from flask import Flask, session, render_template, request, flash
+from flask import Flask, redirect, session, render_template, request, flash, url_for
 
 import database
 
@@ -70,16 +70,25 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
-    id=request.args.get('id')
-    if not(id is None):
+    print(session['email'])
+    if not(session['email'] is None):
         id=request.args.get('id')
-        tests = database.get_hilo(id)
-        return render_template('foro.html', tests=tests)
+        if not(id is None):
+            id=request.args.get('id')
+            tests = database.get_hilo(id)
+            return render_template('foro.html', tests=tests)
+        else:
+            tests = database.get_hilos()
+            print(tests)
+            return render_template('foroMain.html', tests=tests)
     else:
-        tests = database.get_hilos()
-        print(tests)
-        return render_template('foroMain.html', tests=tests)
-
+        return redirect(url_for("login"), code=302)
+@app.route('/crearHilo/', methods=['GET'])
+def crearHilo():
+    if not(session['email'] is None):
+        return render_template('crearHilo.html')
+    else:
+        return redirect(url_for("login"), code=302)
     
 @app.route('/login/', methods=['GET','POST'])
 def login():

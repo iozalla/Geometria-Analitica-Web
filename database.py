@@ -40,14 +40,20 @@ def register_user(email, name, last_name, password, rol):
     _conn.commit()
     _conn.close()
 
-def crear_post(text, name):
+def crear_post(text, name,hilo):
     _conn = sqlite3.connect(foro_db_file_location)
     _c = _conn.cursor()
     _c.execute("select hilo from post GROUP BY hilo ORDER BY fechaHora DESC LIMIT 1;")
     result = [x for x in _c.fetchall()]
     id= result[0][0]+1
     print(result[0][0]+1)
-    _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,id))
+    if hilo==-1:
+        print("_________________________"+str(hilo))
+        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,id))
+    else:
+        print("_________________________"+str(hilo)+"_______________________")
+        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,hilo))
+
     _conn.commit()
     _conn.close()
 

@@ -71,6 +71,7 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
+    global foroActual
     try:
         session['email']
     except:
@@ -80,6 +81,7 @@ def foro():
         if not(id is None):
             id=request.args.get('id')
             tests = database.get_hilo(id)
+            foroActual=id
             return render_template('foro.html', tests=tests)
         else:
             tests = database.get_hilos()
@@ -87,18 +89,24 @@ def foro():
             return render_template('foroMain.html', tests=tests)
     else:
         return redirect(url_for("login"), code=302)
+        
 @app.route('/crearHilo/', methods=['GET','POST'])
 def crearHilo():
     try:
         session['email']
     except:
         return redirect(url_for("login"), code=302)
-    if not(session['email'] is None):
+    if not(session['email'] is None):   
         if flask.request.method == 'POST':
-            
-            text=request.form['text']
-            database.crear_post(text,session['email'])
-            return render_template('crearHilo.html')
+            try:
+                text=request.form['text']
+                database.crear_post(text,session['email'],-1)
+            except:
+                text=request.form['text2']
+                database.crear_post(text,session['email'],foroActual)
+
+            database.crear_post(text,session['email'],foroActual)
+            return redirect(url_for('foro')+"?id="+foroActual)
         else:
             return render_template('crearHilo.html')
     else:

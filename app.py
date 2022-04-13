@@ -1,5 +1,3 @@
-from cgi import test
-from django.shortcuts import render
 import flask
 import requests
 import re
@@ -7,8 +5,7 @@ import re
 from datetime import datetime, timedelta
 from json import dumps, load, loads
 
-from flask import Flask, redirect, session, render_template, request, flash, url_for
-
+from flask import Flask, redirect, session, render_template, request, flash, url_for,make_response
 import database
 
 
@@ -34,6 +31,25 @@ def sample_function():
 app = Flask(__name__)
 app.secret_key = '*nW6Ze{|=p-Whj3FA%V+0xGwC~\OXY^6B=979NO2'
 
+
+@app.route('/pdf')
+def pdfviewer():
+    number=int(request.args.get('id'))
+    print(number)
+    if number ==1:
+        return redirect("/static/docs/1_Iniciación.pdf")
+    elif number==2:
+        return redirect("/static/docs/2_Vectores.pdf")
+    elif number==3:
+        return redirect("/static/docs/3_OperacionesV.pdf")
+    elif number==4:
+        return redirect("/static/docs/4_EcuacionesR.pdf")
+    elif number==5:
+        return redirect("/static/docs/5_ProblemasI.pdf")
+    elif number==6:
+        return redirect("/static/docs/Todos.pdf")
+    else:
+        return 
 
 @app.route('/', methods=['GET'])
 def index():

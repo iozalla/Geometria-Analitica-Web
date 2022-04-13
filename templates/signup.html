@@ -27,14 +27,22 @@
                 <h1>Test</h1>
                 <br>
                 <form class="row g-3 needs-validation" action="{{ url_for('signup') }}" method='post'>
-                    <input type="text" name = 'email' class="form-control" placeholder="Email" aria-label="email"
+                    <input type="text" name='email' class="form-control" placeholder="Email" aria-label="email"
                         aria-describedby="basic-addon1">
-                    <input type="text" name = 'name' class="form-control" placeholder="Nombre" aria-label="nombre"
+                    <input type="text" name='name' class="form-control" placeholder="Nombre" aria-label="nombre"
                         aria-describedby="basic-addon1">
-                    <input type="text" name = 'last_name' class="form-control" placeholder="Apellido" aria-label="apellido"
-                        aria-describedby="basic-addon1">
-                    <input type="password" name = 'password'class="form-control" placeholder="Contraseña" aria-label="password"
-                        aria-describedby="basic-addon1">
+                    <input type="text" name='last_name' class="form-control" placeholder="Apellido"
+                        aria-label="apellido" aria-describedby="basic-addon1">
+                    <input type="password" name='password' class="form-control" placeholder="Contraseña"
+                        aria-label="password" aria-describedby="basic-addon1">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="btn-check" name="rol" id="option1" autocomplete="off" checked
+                            value="alumno">
+                        <label class="btn btn-danger" for="option1">Alumno</label>
+                        <input type="radio" class="btn-check" name="rol" id="option2" autocomplete="off"
+                            value="profesor">
+                        <label class="btn btn-danger" for="option2">Profesor</label>
+                    </div>
                     <button type="submit" class="btn btn-outline-success">Registrarse</button>
                 </form>
             </div>

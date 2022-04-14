@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -37,6 +40,40 @@
                 <a class="position-absolute end-200" href="{{ url_for('pdfviewer') }}?id=6"><button class="btn btn-primary btn-lg"  type="button">Todo</button></a><br>
             </div>
 
+            
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <h1>Teoria por temas</h1> <br>
+                <h2>Iniciación a la geometría analítica</h2>
+                Se conoce como plano cartesiano, coordenadas cartesianas o sistema cartesiano, a dos rectas numéricas perpendiculares, una horizontal (Abscisa, “x”) y otra vertical (Ordenada, “y”), que se cortan en un punto llamado origen o punto cero.<br>
+                <br>
+                Se llaman cuadrantes a las cuatro áreas que se forman por la unión de las dos rectas perpendiculares. Los puntos del plano se describen dentro de estos cuadrantes.<br><br>
+                <li>Cuadrante I:    La abscisa y la ordenada son positivas.</li>
+                <li>Cuadrante II:   La abscisa es negativa y la ordenada positiva.</li>
+                <li>Cuadrante III:  La abscisa y la ordenada son negativas.</li>
+                <li>Cuadrante IV:   La abscisa es positiva y la ordenada negativa.</li>
+                <img src="/static/img/cuadrantes.png" alt="cuadrantes"><br><br>
+            
+                <h2>Vectores</h2>
+                En matemáticas se define vector como un elemento de un espacio vectorial. Un vector se representa mediante un segmento de recta, orientado dentro del espacio euclidiano. 
+                <br>Se caracteriza por:
+                <li>El módulo  es la longitud del segmento. </li>
+                <li>La dirección, la de la recta en que se apoya. </li>
+                <li>El sentido, el que va del origen al extremo</li><br>
+                <img src="/static/img/vectores.png" alt="vectores"><br>
+
+                Podemos expresar el vector mediante sus componentes, que se obtienen restando las coordenadas del destino menos las del origen, 
+                siendo estos dos puntos dentro del espacio euclídeo en el que estamos trabajando (actualmente es \({R^{2}}\)):  
+                \({\overline{AB}=\left((b_1-a_1)^2,(b_2-a_2)^2 \right) }\).<br><br>
+
+                El módulo de un vector se puede calcular mediante la fórmula:
+                \(|{\overline{AB}|= \sqrt{(b_1-a_1)^2+(b_2-a_2)^2}}\)<br><br>
+                Dos vectores fijos se dicen equivalentes si tienen el mismo módulo, dirección y sentido. 
+                El conjunto de vectores equipolentes se denomina vector libre, y cualquiera de ellos sirve para representarlo. Lo indicaremos mediante  \(\overline{v}\).<br>
+
+                \[(x = {-b \pm \sqrt{b^2-4ac} \over 2a})\].
+            </div>
+            
+            
             <div class="p-5 mb-4 bg-light rounded-3">
                 <h1>Geometria analitica</h1>
                 <h2>La recta de Euler</h2>

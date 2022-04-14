@@ -83,6 +83,25 @@ def get_user_data(user_email):
 
     return result[0]
 
+def crear_post(text, name,hilo):
+    _conn = sqlite3.connect(foro_db_file_location)
+    _c = _conn.cursor()
+    _c.execute("select hilo from post GROUP BY hilo ORDER BY fechaHora DESC LIMIT 1;")
+    result = [x for x in _c.fetchall()]
+    id= result[0][0]+1
+    print(result[0][0]+1)
+    if hilo==-1:
+        print("__"+str(hilo))
+        print("_____"+str(id))
+        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,id))
+    else:
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        print("__"+str(hilo)+"___")
+        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,hilo))
+
+    _conn.commit()
+    _conn.close()
+
 # insert into post(usuario,mensaje,fechaHora,hilo) VALUES("usuario","mensaje",DATETIME(),1);
 # alter table post drop column postId;
 # alter table post add column postId INTEGER AUTOINCREMENT;

@@ -1,3 +1,4 @@
+from ast import Global
 import flask
 import requests
 import re
@@ -8,7 +9,8 @@ from json import dumps, load, loads
 from flask import Flask, redirect, session, render_template, request, flash, url_for,make_response
 import database
 
-
+global foroActual
+#foroActual = -1
 
 def sample_function():
     """This is a sample docstring subject
@@ -86,12 +88,17 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
-    print(session['email'])
+    
+    try:
+        session['email']
+    except:
+        return redirect(url_for("login"), code=302)
     if not(session['email'] is None):
         id=request.args.get('id')
         if not(id is None):
             id=request.args.get('id')
             tests = database.get_hilo(id)
+            globals()["foroActual"]=id
             return render_template('foro.html', tests=tests)
         else:
             tests = database.get_hilos()
@@ -99,10 +106,25 @@ def foro():
             return render_template('foroMain.html', tests=tests)
     else:
         return redirect(url_for("login"), code=302)
-@app.route('/crearHilo/', methods=['GET'])
+
+@app.route('/crearHilo/', methods=['GET','POST'])
 def crearHilo():
+    try:
+        session['email']
+    except:
+        return redirect(url_for("login"), code=302)
     if not(session['email'] is None):
-        return render_template('crearHilo.html')
+        if flask.request.method == 'POST':
+            try:
+                text=request.form['text']
+                database.crear_post(text,session['email'],-1)
+            except:
+                text=request.form['text2']
+                database.crear_post(text,session['email'],foroActual)
+
+            return redirect(url_for('foro'))
+        else:
+            return render_template('crearHilo.html')
     else:
         return redirect(url_for("login"), code=302)
     

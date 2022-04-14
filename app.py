@@ -10,7 +10,7 @@ from flask import Flask, redirect, session, render_template, request, flash, url
 import database
 
 global foroActual
-#foroActual = -1
+foroActual = -1
 
 def sample_function():
     """This is a sample docstring subject
@@ -88,7 +88,6 @@ def correccion():
 
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
-    
     try:
         session['email']
     except:
@@ -96,7 +95,7 @@ def foro():
     if not(session['email'] is None):
         id=request.args.get('id')
         if not(id is None):
-            id=request.args.get('id')
+            print("ACTUALIZAR GLOBAL: "+id,foroActual)
             tests = database.get_hilo(id)
             globals()["foroActual"]=id
             return render_template('foro.html', tests=tests)
@@ -118,11 +117,11 @@ def crearHilo():
             try:
                 text=request.form['text']
                 database.crear_post(text,session['email'],-1)
+                return redirect(url_for('foro'))
             except:
                 text=request.form['text2']
                 database.crear_post(text,session['email'],foroActual)
-
-            return redirect(url_for('foro'))
+                return redirect(url_for('foro')+"?id="+foroActual)
         else:
             return render_template('crearHilo.html')
     else:

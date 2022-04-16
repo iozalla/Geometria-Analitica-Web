@@ -129,13 +129,15 @@ def crearHilo():
     
 @app.route('/login/', methods=['GET','POST'])
 def login():
-    if flask.request.method == 'POST' and request.form['password'] == (user_data := database.get_user_data(request.form['email']))[2]:
-        session['email'] = request.form['email']
-        session['nombre'] = user_data[0]
-        session['apellido'] = user_data[1]
-        print(session['nombre'])
-        print(session['apellido'])
-        return render_template('index.html')
+    if flask.request.method == 'POST' :
+        if (user_data := database.get_user_data(request.form['email'])) != None and request.form['password'] == user_data[2]:
+            session['email'] = request.form['email']
+            session['nombre'] = user_data[0].title()
+            session['apellido'] = user_data[1].title()
+            return render_template('index.html')
+        else:
+            flash('Email o contraseña incorrectos.')
+            return render_template('login.html')
     else:
         return render_template('login.html')
 

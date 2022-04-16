@@ -81,7 +81,10 @@ def get_user_data(user_email):
 
     _conn.close()
 
-    return result[0]
+    if result:
+        return result[0]
+    else:
+        return None
 
 def crear_post(text, name,hilo):
     _conn = sqlite3.connect(foro_db_file_location)

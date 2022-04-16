@@ -1,4 +1,5 @@
 from ast import Global
+from crypt import methods
 import flask
 import requests
 import re
@@ -55,10 +56,12 @@ def pdfviewer():
 
 @app.route('/', methods=['GET'])
 def index():
+    return render_template('temas.html')
+
+@app.route('/main/', methods=['GET'])
+def main():
     """Return the index.html page"""
     return render_template('index.html')
-
-
 @app.route('/teoria/', methods=['GET'])
 def teoria():
     """Return the teoria.html page"""

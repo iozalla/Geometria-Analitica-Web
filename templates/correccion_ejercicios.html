@@ -24,27 +24,50 @@
 
         <div class="container py-4">
             <div class="p-5 mb-4 bg-light rounded-3">
-                <h1>Hilo</h1>
+                <h1>Tests</h1>
                 <div class="container py-4">
                     <div class="p-5 mb-4 bg-light rounded-3">
-        
+
                         {% for id, question, posible_answers, answer, respondido in correciones %}
-                        <div>
-                            <h5>{{ question }}</h5>
+                        <div class="container rounded-3 p-0 mb-1 border">
+                            {% if respondido == None or answer != respondido %}
+                            <div class="container-fluid p-2 mb-0 " style="border-top-left-radius: 3px;
+                                                                                border-top-right-radius: 3px;
+                                                                                background-color:red;
+                                                                                color: aliceblue;">
+                                <h5>{{ question }}</h5>
+                            </div>
+                            {% else %}
+                            <div class="container-fluid p-2 mb-0 " style="border-top-left-radius: 3px;
+                                                                                border-top-right-radius: 3px;
+                                                                                background-color:green;
+                                                                                color: aliceblue;">
+                                <h5>{{ question }}</h5>
+                            </div>
+                            {% endif %}
                             <ol type="a">
                                 {% for posible_answer in posible_answers %}
-                                    {% if answer == posible_answer %}
-                                        <li style="color:green">{{ posible_answer }}</li>
-                                    {% elif  respondido == posible_answer and respondido != answer%}
-                                        <li style="color:red">{{ posible_answer }}</li>
-                                    {% else %}
-                                        <li>{{ posible_answer }}</li>
-                                    {% endif %}
+                                {% if answer == posible_answer %}
+                                <li style="color:green">{{ posible_answers[posible_answer] }}</li>
+                                {% elif respondido == posible_answer and respondido != answer%}
+                                <li style="color:red">{{ posible_answers[posible_answer] }}</li>
+                                {% else %}
+                                <li>{{ posible_answers[posible_answer] }}</li>
+                                {% endif %}
                                 {% endfor %}
                             </ol>
                         </div>
                         {% endfor %}
-        
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <form action="/main/">
+                                <input type="submit" class="btn btn-primary m-2 btn-lg" href="{{ url_for('ejercicios') }}"
+                                    value="Volver al menu principal">
+                            </form>
+                            <form action="/ejercicios/">
+                                <input type="submit" class="btn btn-primary m-2 btn-lg" href="{{ url_for('main') }}"
+                                    value="Volver a intentarlo">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +78,7 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
-        
+
 </body>
 
 </html>

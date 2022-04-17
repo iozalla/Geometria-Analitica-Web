@@ -82,10 +82,9 @@ def correccion():
     for id, question, a, b, c, d, answer in tests:
         try:
             respondido = request.form[str(id)]
-            correccion.append((id, question, [a, b, c, d], answer, respondido))
         except:
-            print("el usuario no ha respondido a todas las prerguntas")
-            #return redirect(url_for('correccion'))
+            respondido = None
+        correccion.append((id, question, {'a':a, 'b':b, 'c':c, 'd':d}, answer, respondido))
             
     return render_template('correccion_ejercicios.html', correciones=correccion)
 
@@ -105,7 +104,7 @@ def foro():
         else:
             tests = database.get_hilos()
             print(tests)
-            return render_template('foroMain.html', tests=tests)
+            return render_template('foroindex.html', tests=tests)
     else:
         return redirect(url_for("login"), code=302)
 

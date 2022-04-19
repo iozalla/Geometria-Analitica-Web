@@ -13,24 +13,6 @@ import database
 global foroActual
 foroActual = -1
 
-def sample_function():
-    """This is a sample docstring subject
-
-    This is a sample docstring description.
-
-    Args:
-        s (str): a string argument
-        i (int): an integer argument
-
-    Returns:
-         dict: a dictionary is returned
-
-    Raises:
-        Any exception to be caught later.
-    """
-    return "Hello World"
-
-
 app = Flask(__name__)
 app.secret_key = '*nW6Ze{|=p-Whj3FA%V+0xGwC~\OXY^6B=979NO2'
 

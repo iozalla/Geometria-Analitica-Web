@@ -1,7 +1,7 @@
 from ast import Global
-from crypt import methods
+
 import flask
-import requests
+
 import re
 
 from datetime import datetime, timedelta

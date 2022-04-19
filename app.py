@@ -104,7 +104,7 @@ def foro():
         else:
             tests = database.get_hilos()
             print(tests)
-            return render_template('foroindex.html', tests=tests)
+            return render_template('foroMain.html', tests=tests)
     else:
         return redirect(url_for("login"), code=302)
 

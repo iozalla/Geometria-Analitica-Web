@@ -70,6 +70,13 @@ def correccion():
             
     return render_template('correccion_ejercicios.html', correciones=correccion)
 
+
+@app.route('/videos/', methods=['GET'])
+def videos():
+    return render_template('videos.html')
+
+
+
 @app.route('/foro/', methods=['GET','POST'])
 def foro():
     try:

@@ -39,12 +39,12 @@
 
                     {% if tests!=0 %}
                     {% for usuario,mensaje,fechaHora,postId,hilo in tests %}
-                    <div class="p-5 mb-4 bg-secondary rounded-3">
+                    <div class="p-5 mb-4 bg rounded-3" style="border-style: groove;">
                         <div class="col-md-6">
+                            <h6>{{ rol }} {{ usuario }}</h6>
                             <a class="nav-link" href="{{ url_for('foro') }}?id={{hilo}}">
                                 <h5>{{ mensaje }}</h5>
                             </a>
-                            <h6>{{ usuario }} {{hilo}}</h6>
                         </div>
                     </div>
                     <hr>

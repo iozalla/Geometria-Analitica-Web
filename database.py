@@ -61,9 +61,9 @@ def get_hilos():
 
     _conn = sqlite3.connect(foro_db_file_location)
     _c = _conn.cursor()
-    _c.execute("select * from post GROUP BY hilo ORDER BY fechaHora;")
 
-
+    _c.execute("ATTACH DATABASE ? as users;",(users_db_file_location,))
+    _c.execute("SELECT usuario, mensaje, fechaHora, postId, hilo, rol, first_name, last_name FROM main.post inner join users.users on usuario = email ORDER BY fechaHora;")
 
     result = [x for x in _c.fetchall()]
     print(result)

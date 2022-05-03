@@ -46,7 +46,7 @@ def get_hilo(idHilo):
         int(idHilo)
         _conn = sqlite3.connect(foro_db_file_location)
         _c = _conn.cursor()
-        _c.execute("SELECT * FROM post where hilo ="+str(idHilo)+";")
+        _c.execute("SELECT * FROM post where hilo = '{}';".format(str(idHilo)))
     except Exception as e:
         print("illegal char s      :"+str(e))
         return 0
@@ -63,7 +63,7 @@ def get_hilos():
     _c = _conn.cursor()
 
     _c.execute("ATTACH DATABASE ? as users;",(users_db_file_location,))
-    _c.execute("SELECT usuario, mensaje, fechaHora, postId, hilo, rol, first_name, last_name FROM main.post inner join users.users on usuario = email ORDER BY fechaHora;")
+    _c.execute("SELECT usuario, mensaje, fechaHora, postId, hilo, rol, first_name, last_name FROM main.post inner join users.users on usuario = email WHERE first = 1 ORDER BY fechaHora;")
 
     result = [x for x in _c.fetchall()]
     print(result)
@@ -91,16 +91,15 @@ def crear_post(text, name,hilo):
     _c = _conn.cursor()
     _c.execute("select hilo from post GROUP BY hilo ORDER BY fechaHora DESC LIMIT 1;")
     result = [x for x in _c.fetchall()]
-    id= result[0][0]+1
-    print(result[0][0]+1)
+    print(result)
     if hilo==-1:
-        print("__"+str(hilo))
-        print("_____"+str(id))
-        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,id))
+        if bool(result):
+            id = int(result[0][0])+1
+        else:
+            id = 0
+        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo,first) VALUES('{}','{}',DATETIME(),'{}',1);".format(name,text,id))
     else:
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print("__"+str(hilo)+"___")
-        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo) VALUES('{}','{}',DATETIME(),'{}');".format(name,text,hilo))
+        _c.execute("insert into post(usuario,mensaje,fechaHora,hilo,first) VALUES('{}','{}',DATETIME(),'{}',0);".format(name,text,hilo))
 
     _conn.commit()
     _conn.close()

@@ -112,7 +112,7 @@ def crearHilo():
             except:
                 text=request.form['text2']
                 database.crear_post(text,session['email'],foroActual)
-                return redirect(url_for('foro')+"?id="+foroActual)
+                return redirect(url_for('foro')+"?id="+str(foroActual))
         else:
             return render_template('crearHilo.html')
     else:

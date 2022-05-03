@@ -1,0 +1,87 @@
+id  question    a   b   c   d   answer
+1   
+Dados u=(-2,3), v=(5,2) y w=(-2,-4) cual es el resultado de u+v:
+(3,5)
+(3,7)
+(5,5)
+(-3,5)
+a
+
+2
+Dados u=(-2,3), v=(5,2) y w=(-2,-4) cual es el resultado de 3u:
+(-6,-9)
+(-6,9)
+(6,-9)
+(6,9)
+b
+
+3
+Dados u=(-2,3), v=(5,2) y w=(-2,-4) cual es el resultado de u+2v-w:
+(-10,11)
+(10,12)
+(10,11)
+(9,11)
+c
+
+4
+Dados u=(-2,3), v=(5,2) y w=(-2,-4) cual es el resultado de 3(u-2v):
+(36,3)
+(30,-3)
+(-36,3)
+(-36,-3)
+d
+
+5
+Dados u=(-2,3), v=(5,2) y w=(-2,-4) cual es el resultado de -(w-u):
+(0,7)
+(-1,7)
+(2,7)
+(3,7)
+a
+
+6
+Calcula el valor de a para que las rectas r: 2x + 3y + 23 = 0  y s: ax + 3y + 46 = 0  sean paralelas:
+a=3
+a=2
+a=0.5
+a=4
+b
+
+7
+Halla la ecuación de la circunferencia de centro C(-3, 3) y radio 5.
+(x+3)^2 + (y+3)^2 = 5^2
+(x-3)^2 + (y-3)^2 = 5^2
+(x+3)^2 + (y-3)^2 = 5^2
+(x-3)^2 + (y+3)^2 = 5^2
+c
+
+8
+Halla la ecuación general de la recta que pasa por el punto P(-4,-4) y es perpendicular a x - 2y - 10 = 0 
+2x + y + 6 = 0
+2x + 2y + 12 = 0
+4x + y + 12 = 0
+2x + y + 12 = 0
+d
+
+9
+Halla la ecuación de la circunferencia de centro C(-5, 4) y que pasa por el punto P(-5, 0). 
+x^2 + y^2 + 10x - 8y + 25 = 0
+x^2 + y^2 + 9x - 8y + 25 = 0
+x^2 + y^2 + 10x - 10y + 25 = 0
+x^2 + y^2 + 5x - 8y + 5 = 0
+a
+
+10
+Dados los vectores u=(2,-3) y v=(-4-3), calcula suproducto escalar:
+2
+1
+-1
+0.75
+b
+
+
+
+
+
+
+

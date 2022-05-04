@@ -40,13 +40,13 @@ def register_user(email, name, last_name, password, rol):
     _conn.commit()
     _conn.close()
 
-def get_hilo(idHilo):
+def get_hilo(idHilo, first):
     
     try:
-        int(idHilo)
         _conn = sqlite3.connect(foro_db_file_location)
         _c = _conn.cursor()
-        _c.execute("SELECT * FROM post where hilo = '{}';".format(str(idHilo)))
+        _c.execute("ATTACH DATABASE ? as users;",(users_db_file_location,))
+        _c.execute("SELECT usuario, mensaje, fechaHora, postId, hilo, rol, first_name, last_name FROM post INNER JOIN users.users on usuario = email WHERE hilo = '{}' AND first = {};".format(str(idHilo), str(first)))
     except Exception as e:
         print("illegal char s      :"+str(e))
         return 0

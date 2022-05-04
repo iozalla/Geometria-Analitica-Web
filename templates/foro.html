@@ -25,38 +25,43 @@
 
         <div class="container py-4">
             <div class="p-5 mb-4 bg-light rounded-3">
-                <h1>Test</h1>
+                <h4 style="display: inline; color: rgb(89, 81, 138);">{{ first[5].title() }}</h4>
+                <h4 style="display: inline;">{{ first[6] }} {{ first[7] }}</h4>
+                
+                <h3 style=" text-indent: 1ch;">{{ first[1] }}</h3>
                 <br>
-                    {% if tests!=0 %}
-                    {% for usuario,mensaje,fechaHora,postId,hilo,first in tests %}
-                    <div class="p-4 mb-3 bg-secondary rounded-3">
+                {% if tests!=0 %}
+                {% for usuario,mensaje,fechaHora,postId,hilo,rol,first_name,last_name in tests %}
+                <div class="p-3 mb-1 bg rounded-3" style="border-style: groove;">
 
                     <div class="col-md-6">
-                        <h5>{{ mensaje }}</h5>
-                        <h6>{{ usuario }}</h6>
+                        <h6 style="display: inline; color: rgb(89, 81, 138);">{{ rol.title() }}</h6>
+                        <h6 style="display: inline;">{{ first_name }} {{ last_name }}</h6>
                     </div>
+                    
+                    <h5 style=" text-indent: 1ch;">{{ mensaje }}</h5>
+                </div>
+                <br>
+
+                {% endfor %}
+                {% endif %}
+                <form class="row g-3 needs-validation" action="/crearHilo/" method='post'>
+
+                    <div class="form-floating">
+
+                        <textarea class="form-control" placeholder="" name="text2" id="text2"
+                            style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Escribe tu respuesta aqui.</label>
+                    </div><br>
+
+
+                    <div class="col-12">
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Responder</button>
+                        </div>
 
                     </div>
-                    <br>
-                    
-                    {% endfor %}
-                    {% endif %}
-                    <form class="row g-3 needs-validation" action="/crearHilo/" method='post'>
-                    
-                        <div class="form-floating">
-    
-                            <textarea class="form-control" placeholder="" name="text2" id="text2" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2">Escribe tu respuesta aqui.</label>
-                        </div><br>
-    
-    
-                        <div class="col-12">
-                            <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Responder</button>
-                            </div>
-    
-                        </div>
-                    
+
 
             </div>
         </div>

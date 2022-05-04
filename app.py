@@ -87,9 +87,10 @@ def foro():
         id=request.args.get('id')
         if not(id is None):
             print("ACTUALIZAR GLOBAL: "+id,foroActual)
-            tests = database.get_hilo(id)
+            first = database.get_hilo(id,1)[0]
+            tests = database.get_hilo(id,0)
             globals()["foroActual"]=id
-            return render_template('foro.html', tests=tests)
+            return render_template('foro.html', tests=tests, first=first)
         else:
             tests = database.get_hilos()
             print(tests)
